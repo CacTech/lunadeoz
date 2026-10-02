@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Orlando Hernandez Cruz</title>
+	<title>Luna De Oz - Luz Valeria Esquivel</title>
 	<link rel="icon" href="favicon.ico" type="image/png" />
 	<link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png">
   	<link rel="shortcut icon" href="./icons/favicon.ico">
@@ -20,30 +20,28 @@
 	<!-- <link rel="stylesheet" href="css/themes/grey-white.css"> -->
 	<!-- <link rel="stylesheet" href="css/themes/white-indigo.css"> -->
 	<!-- <link rel="stylesheet" href="css/themes/white-blue.css"> -->
-	<link rel="stylesheet" href="css/themes/white-grey.css"> 
+	<link rel="stylesheet" href="css/themes/dark-white.css"> 
 	<!-- <link rel="stylesheet" href="css/themes/white-red.css"> -->
 	<!-- <link rel="stylesheet" href="css/themes/yellow-black.css"> -->
 </head>
 <body>
 	<main>
-		<div class="intro">Orlando Hernandez Cruz (Masterk3y)<br><p style="font-size: x-large;"></p></div>
-		<div class="tagline" style="align-items: flex-start;">🌱 Informático teórico y programador web, apasionado por la tecnología, la radio y todo lo relacionado con nuevas ideas. <br>Fuera del teclado me gusta cuidar mi jardín, plantar y rescatar árboles, perderme entre libros y dejarme sorprender por música electrónica misteriosa / desconocida. <br>
-Esposo de la Dra. <a href="https://www.instagram.com/nanys92/" target="_blank">Nancy</a>, Orgulloso Papá, responsable de Desarrollo/Operaciones Web @ IMSS Coahuila y Creador de <a href="http://noizenacion.netlify.app" target="_blank"> Noize Nación Radio</a> 🌱<br> 
+		<div class="intro">Luz Valeria Esquivel (Luna De Oz)<br><p style="font-size: x-large;"></p></div>
+		🎭 Teatro · 🎙️ Música · 🖤 Rock · 🌙 Wicca · 🔮 Brujería · ✨ Arte<br>
+		<div class="tagline" style="align-items: flex-start;">🌙 Actriz de teatro musical, cantante, amante de la música, las historias, el arte y todo aquello que habita entre lo mágico y lo cotidiano.
+Fuera del escenario me encontrarás explorando nuevos proyectos, creando personajes, practicando brujería y perdiéndome entre música, mitología y creatividad. 🌙 <br> 
 			<br>
 			<br></div>
 		<!-- Find your icons from here - https://fontawesome.com/icons?d=gallery&s=brands -->
 		<div class="icons-social">
-			<a target="_blank" href="https://github.com/orlandohc"><i class="fab fa-github"></i></a>
-			<a target="_blank" href="https://www.linkedin.com/in/orlando-hernandez-cruz-7ba653139/"><i class="fab fa-linkedin"></i></a>
-			<a target="_blank" href="https://www.instagram.com/orlandohc/"><i class="fab fa-instagram"></i></a>
-			<a target="_blank" href="https://wa.me/+528617989375"><i class="fab fa-whatsapp"></i></a>
-			<a target="_blank" href="https://www.pinterest.com.mx/masterk3y1337/pins/"><i class="fab fa-pinterest"></i></a>
-			<a target="_blank" href="https://soundcloud.com/orlandohc"><i class="fab fa-soundcloud"></i></a>
-			<a target="_blank" href="http://www.imdb.com/user/ur65237307/ratings?ref_=nvn_usr_rt_4"><i class="fab fa-imdb"></i></a>
-			<a target="_blank" href="https://noizenacion.netlify.app"><i class="fas fa-music"></i></a>
-			<a href="./radio"><i class="fas fa-broadcast-tower"></i></a>
-			<a target="_blank" href="https://orlandohc-masterk3y.blogspot.com/"><i class="fab fa-blogger"></i></a>
-			<a target="_blank" href="https://medium.com/@orlandohernandezcruz"><i class="fab fa-medium-m"></i></a> 
+		    <a target="_blank" href="https://wa.me/+528443506965"><i class="fab fa-whatsapp"></i></a>
+			<a target="_blank" href="https://x.com/Luzva16"><i class="fas fa-globe"></i></a>
+			<a target="_blank" href="https://www.instagram.com/luna.sacerdotisa?utm_source=qr&stkn=MWZqdjQzM3h3M201eQ=="><i class="fab fa-instagram"></i></a>
+			<a target="_blank" href="https://open.spotify.com/user/22wg7toersfksutnpuo4e7wii?si=1-n7Zz45SZK8xB1mrJsRlg&utm_source=whatsapp"><i class="fab fa-spotify"></i></a>
+			<a target="_blank" href="https://www.threads.com/@luuzvaesquivel"><i class="fab fa-scribd"></i></a>
+			<a target="_blank" href="https://pin.it/1BnvsLioU"><i class="fab fa-pinterest"></i></a>
+			<a target="_blank" href="https://www.imdb.com/user/p.b3cbgzq3mep3jqyodgaxwgxhlm/?ref_=ext_shr"><i class="fab fa-imdb"></i></a>
+			<a target="_blank" href="https://noizenacion.netlify.app"><i class="fab fa-facebook"></i></a>
 
 
 
@@ -59,53 +57,5 @@ Esposo de la Dra. <a href="https://www.instagram.com/nanys92/" target="_blank">N
 		
 	  </div>
 	</main>
-	<audio id="bg-audio" preload="auto"></audio>
-
-	<div id="play-hint">
-		<i class="fas fa-music"></i>
-		<span>Toca para escuchar</span>
-	</div>
-
-	<script>
-		const tracks = ['audio/track1.mp3', 'audio/track2.mp3', 'audio/track3.mp3'];
-		let current = 0;
-		const audio = document.getElementById('bg-audio');
-		const hint = document.getElementById('play-hint');
-		const isMobile = navigator.maxTouchPoints > 0;
-
-		const hintLabel = hint.querySelector('span');
-
-		function dismissHint() {
-			hint.classList.add('fade-out');
-			setTimeout(() => hint.remove(), 600);
-		}
-
-		audio.addEventListener('ended', () => {
-			current = (current + 1) % tracks.length;
-			audio.src = tracks[current];
-			audio.play();
-		});
-
-		if (isMobile) {
-			hintLabel.textContent = 'Toca para escuchar';
-			hint.classList.add('visible');
-			document.addEventListener('click', () => {
-				audio.src = tracks[current];
-				audio.play();
-				dismissHint();
-			}, { once: true });
-		} else {
-			audio.src = tracks[current];
-			audio.play().catch(() => {
-				// Autoplay bloqueado en desktop — mostrar hint y esperar clic
-				hintLabel.textContent = 'Clic para escuchar';
-				hint.classList.add('visible');
-				document.addEventListener('click', () => {
-					audio.play();
-					dismissHint();
-				}, { once: true });
-			});
-		}
-	</script>
 </body>
 </html>
