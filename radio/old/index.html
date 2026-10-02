@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>🎧 Radio Online Coahuila</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+  <script src="js/parser.min.js"></script>
+  
+  <script>
+
+    var playlist;
+  
+    // Fetch the playlist file, using xhr for example
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "./estaciones.m3u");
+    xhr.overrideMimeType("audio/x-mpegurl"); // Needed, see below.
+    xhr.onload = parse;
+    xhr.send();
+    
+    // Parse it
+    function parse () {
+        var playlist = M3U.parse(this.response);
+        console.log(playlist)
+        var options = document.getElementById("selection");
+        for (var i = 0; i < playlist.length; i++){
+            var option = document.createElement("option");
+            option.text = playlist[i].artist;
+            option.text = playlist[i].title;
+            option.value = playlist[i].file;
+            option.setAttribute("data-icon", "glyphicon-music");
+            options.add(option);
+        }
+        $('.selectpicker').selectpicker('refresh');
+    };
+  
+    $(document).ready(function() {
+
+        $('#selection').on('change', function() {
+            change($(this).val(), $(this).find('option:selected').text());
+        });
+
+    });
+
+
+    function change(sourceUrl, name) {
+        var audio = document.getElementById("player");
+        var source = document.getElementById("radio_source");
+        var title = document.getElementById("radio_name");
+
+        
+
+        if (sourceUrl != "none") {
+            audio.pause();
+            title.innerHTML = name
+            source.src = sourceUrl;
+            audio.load();
+            audio.play();
+        }
+    }
+  </script>
+  
+</head>
+<style>
+    /*
+    body {
+  background-color: #202020;
+  color:#E7062A;
+  
+}
+a {
+  color:#E7062A;
+}*/
+
+@import url("https://fonts.googleapis.com/css?family=Nunito+Sans");
+:root {
+  --blue: #0e0620;
+  --white: #fff;
+  --green: #A3E52B;
+}
+
+html,
+
+
+body {
+ 
+  font-family: "Nunito Sans";
+  color: var(--blue);
+  font-size: 1em;
+}
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #fff;
+  color: black;
+  text-align: center;
+}
+</style>
+
+<body>
+    <div style="margin-top: 5%;" class="container text-center">
+     <br><br><br><br>
+        <h4>📻<q id="radio_name"></q> - Radio En Línea</h4>
+        <div>
+            <br>
+        <audio id="player" controls>
+            <source id="radio_source" src="none">
+            Your browser does not support the audio element.
+        </audio>
+        <br><br>
+        <select id="selection" class="selectpicker show-tick" data-live-search="true">
+            <option data-icon="glyphicon-flash" value="none" selected>- Seleccionar estación -</option>
+            <optgroup label="Local">            
+            <option value="https://stream-142.zeno.fm/temlrqbzt0vvv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJ0ZW1scnFienQwdnZ2IiwiaG9zdCI6InN0cmVhbS0xNDIuemVuby5mbSIsInJ0dGwiOjUsImp0aSI6Ilc3cTFIdzNiUVdLaEpNYjRHelZ1b0EiLCJpYXQiOjE3Njg0MjczOTAsImV4cCI6MTc2ODQyNzQ1MH0.Ue95nLznupFtfwtIfdWAcwahTHbYt5MA-sOa8kMqgas">🎵⭐ XENR</option>
+            <option value="https://streamingcwsradio30.com:7080/stream/1/">🎵 LikeFM</option>
+            <option value="https://radio.rcg.com.mx:7001/stream/1/">🎵 Gallito XHSJ</option>
+            <option value="https://streamingcwsradio30.com:7112/;">🎵 XEBX Sabinas</option>
+            <option value="https://ais-sa3.cdnstream1.com/2695_64.aac">🎵 La Rancherita del Aire</option>
+            <option value="https://mdstrm.com/audio/67378ab60639b6fb47c91763/icecast.audio?property=mmradio">🎵 AW 101.3 Mty</option>
+            <option value="https://radioenhd.com/8212/;">🎵 Radio Centro Apizaco</option>
+            <option value="https://hemnos.cdnstream.com/1113_96">🎵 Hot Tejano Austin</option>
+            <option value="https://17843.live.streamtheworld.com/KHHMFMAAC.aac">🎵 Fuego 101.9 </option>
+
+        </optgroup>
+        <optgroup label="Electro">
+            <option value="https://a11.asurahosting.com:8940/radio.mp3">🎵⭐ Noize Nación</option>
+            <option value="https://25633.live.streamtheworld.com/RADIO538.mp3">🎵⭐ Radio 538</option> 
+            <option value="https://cdn.instream.audio/:9660/stream">🎵⭐ Urbana Play</option>
+            <option value="https://admin.stream.rinse.fm/proxy/rinse_uk/stream">🎵⭐ Rinse FM</option>
+            <option value="https://nl.ah.fm/live">🎵⭐ AH.FM</option>
+            <option value="https://lstn.lv/bbc.m3u8?station=bbc_1xtra&bitrate=96000">🎵⭐ BBC 1Xtra</option>
+            <option value="https://113fm.cdnstream1.com/1736_128?cb=139271.mp3">🎵 113.FM BPM</option>
+            <option value="https://s2.radio.co/s30844a0f4/listen">🎵 EDM Sessions</option>
+            <option value="https://streamssl.chilltrax.com/">🎵⭐ ChillTrax</option>
+        </optgroup>
+        <optgroup label="Top Hits">
+            <option value="https://pureplay.cdnstream1.com/6027_128.mp3">🎵 Hot Hitz</option>
+            <option value="https://infra.roadfm.fr/listen/road_fm/roadfm128">🎵 RoadFM</option>
+            <option value="https://live.truckers.fm/">🎵 Truckers</option>
+            <option value="https://free.rcast.net/250199">🎵 Top 40</option>
+        </optgroup>
+        <optgroup label="Rock">
+            <option value="https://listen.181fm.com/181-buzz_128k.mp3">🎵⭐The Buzz</option>
+            <option value="https://icy.unitedradio.it/Virgin_02.mp3">🎵 Rock 2k Virgin </option>
+        </optgroup>
+        <optgroup label="Country/OLD">
+            <option value="https://27053.live.streamtheworld.com/XHAJFMAAC.aac">🎵 La Primera 88.9 Saltillo</option>
+            <option value="https://das-edge09-live365-dal03.cdnstream.com/a76502">🎵 Reel Countri WI</option>
+            <option value="https://free.rcast.net/208881">🎵The Ranch</option>
+            <option value="https://2.mystreaming.net/uber/boomerang1920s/icecast.audio">🎵1920's</option>
+
+        </optgroup>
+        <optgroup label="Jazz/Clasica/Romantica">
+            <option value="https://das-edge09-live365-dal03.cdnstream.com/a49349">🎵 Smooth Jazz NY</option>
+            <option value="https://stream4.rcast.net/68624">🎵McQs Jazz</option>
+        </optgroup>
+        <optgroup label="Noticias/Clima">
+            <option value="https://18363.live.streamtheworld.com/XEDAFMAAC_SC">🎵 IMAGEN Saltillo</option>
+        </optgroup>
+        </select>
+    
+       </div>
+       <div>
+        
+       
+    </div>
+
+    <div class="footer">
+        <h4>desarrollado por </h4>
+        <a href="https://orlandohc.000webhostapp.com" target="_blank"><img src="img/logo.png" width="250" class="logo"  alt=""></a>
+        
+        <div id="ww_b9090c61e87be" v='1.3' loc='auto' a='{"t":"ticker","lang":"es","sl_lpl":1,"ids":[],"font":"Arial","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"image","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#81D4FA","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722"}'>Más previsiones: <a href="https://oneweather.org/es/seville/25_days/" id="ww_b9090c61e87be_u" target="_blank">El tiempo Sevilla</a></div><script async src="https://app2.weatherwidget.org/js/?id=ww_b9090c61e87be"></script>
+       </div>
+       <!--
+       
+       DIRECTORIO ACTUAL MAYO 2025
+                   
+        Local
+            XENR
+            LikeFM
+            La Rancherita del Aire
+            AW 101.3 Mty
+            Radio Centro Apizaco
+        
+        Electro
+            Noize Nación
+            Radio 538 
+            Urbana Play
+            Rinse FM
+            AH.FM
+            BBC 1Xtra
+            113.FM BPM
+            EDM Sessions
+            ChillTrax
+        
+        Top Hits
+            Hot Hitz
+            RoadFM
+            Truckers
+            Top 40
+       
+        Rock
+            The Buzz
+            Rock 2k Virgin 
+        
+        Country
+            La Primera 88.9 Saltillo
+            Reel Countri WI
+            The Ranch
+            1920's
+
+        Jazz/Clasica/Romantica
+           Smooth Jazz NY
+           McQs Jazz
+
+        Noticias/Clima
+            IMAGEN Saltillo
+       
+       -->
+</body>
+</html>
